@@ -1,0 +1,28 @@
+# npm #
+/node_modules/
+
+#######
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.pyc
+
+# Logs and databases #
+######################
+*.log
+
+# Vim #
+#######
+.*un~
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
