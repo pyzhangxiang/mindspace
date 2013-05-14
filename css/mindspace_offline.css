@@ -1,0 +1,56 @@
+body{
+    background-color:#2e2d29;
+}
+#panel
+{
+    float:left;
+    width:20%;
+    height:520;
+    margin-left:7px;
+}
+.ui-widget
+{
+    font-size:0.5em;
+}
+
+.group{
+    margin-top:17px;
+}
+textarea{width:100%;}
+label{color:white;}
+
+#toolbar {
+padding: 2px;
+display: inline-block;
+position:absolute;
+}
+#toolbar .ui-icon{
+    height:16px;
+    width:16px;
+}
+button.ui-button-icon-only
+{
+    width:16px;
+    height:16px;
+}
+/* support: IE7 */
+*+html #toolbar {
+display: inline;
+}
+
+#filelist .ui-selecting { background: #FECA40; }
+#filelist .ui-selected { background: #F39814; color: white; }
+#filelist { list-style-type: none; margin: 0; padding: 0;}
+#filelist li { margin: 3px; padding: 0.4em; font-size: 1.4em; height: 18px; }
+
+#canvas{
+    float:left;
+    width:78%;
+    height:520px;
+    border:1px solid;
+}
+
+#stat{
+	/*clear:both;*/
+    position:absolute;
+}

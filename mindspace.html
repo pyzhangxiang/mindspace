@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="vendor/raphael-min.js"></script>
+    <script type="text/javascript" src="vendor/json2.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="vendor/jquery-ui-1.10.0.custom.min.js"></script>
+    <script type="text/javascript" src="vendor/jquery-scrollview/jquery.scrollview.js"></script>
+    <script type="text/javascript" src="vendor/mootools-core-1.4.5-full-nocompat-yc.js"></script>
+    <script type="text/javascript" src="mindspace_graffle.js"></script>
+    <script type="text/javascript" src="mindspace_graph.js"></script>
+    <script type="text/javascript" src="mindspace_offline.js"></script>
+    <link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+    <link rel="stylesheet" href="css/mindspace_offline.css" />
+
+    <script>
+        $(function() {
+            $( "input, a, button" )
+            .button();
+            
+        
+
+            //$( "#filelist" ).selectable();
+
+            //var canvasPos = $("#canvas").offset();
+            //$("#stat").css({"left":canvasPos.left+5, "top":canvasPos.top+5, "color":"#fff"});
+            $("#stat").css({"left":15, "top":15, "color":"#fff"});
+
+            // toolbar
+            $( "#text_node" ).button({
+                text: false,
+                icons: {
+                    primary: "ui-icon-document"
+                }
+            })
+            .click(function(){
+                toAddTextNode();
+            });
+            $( "#image_node" ).button({
+                text: false,
+                icons: {
+                    primary: "ui-icon-image"
+                }
+            })
+            .click(function(){
+                toAddImageNode();
+            });
+            $( "#connect" ).button({
+                text: false,
+                icons: {
+                    primary: "ui-icon-arrow-1-ne"
+                }
+            })
+            .click(function() {
+                toAddConnection();
+            });
+            $( "#delete" ).button({
+                text: false,
+                icons: {
+                    primary: "ui-icon-close"
+                }
+            })
+            .click(function() {
+                deleteSelected();
+            });
+
+            //$('button').removeClass("ui-state-default");
+            $("#toolbar").css("visibility","hidden");
+            
+            $("#ofile").change(
+                function(e)
+                {
+                    file = e.target.files[0];
+                    console.log(file);
+                    /*reader = new FileReader()
+                    reader.onload = function(event)
+                    {
+                        txt = e.target.result
+                        //self.load_from_json_data(txt)
+                        
+                    }
+                    reader.readAsText(file, "UTF-8")
+                    */
+                }
+            )
+        });
+
+            
+        
+        function setLabel()
+        {
+            setNodeLabel($("#tta_label").val());
+        }
+
+        
+    </script>
+
+</head>
+<body>
+
+<div id="canvas"></div>
+
+<div id="stat"></div>
+
+<div id="toolbar" class="ui-widget-header ui-corner-all">
+<button id="text_node">add text node</button>
+<button id="image_node">add image node</button>
+<button id="connect">connect to</button>
+<button id="delete">delete</button>
+</div>
+
+
+
+<div id="panel">
+
+<div id="ctrlpanel">
+    <!-- <button id="ctrl_newfile" onclick="newfile();">New</button>
+    <input id="ctrl_openfile" type="button" onclick="openfile();" value="Open">
+    <input type="file" id="ofile" multiple="false" />
+    <button id="ctrl_savefile" onclick="savefile();">Save</button> -->
+   <!-- <button id="ctrl_delfile" onclick="delfile();">Del File</button> -->
+    <button id="ctrl_addtxtnode" onclick="addTxtNode();">Add Text Node</button>
+    <button id="ctrl_addimgnode" onclick="addImgNode();">Add Image Node</button>
+    <!-- <button id="ctrl_undo" onclick="undo();">Undo</button>
+    <button id="ctrl_redo" onclick="redo();">Redo</button> -->
+
+    <button id="ctrl_toback" onclick="toBack();">ToBack</button>
+    <button id="ctrl_tofront" onclick="toFront();">ToFront</button>    
+    <button id="ctrl_redraw" onclick="redraw();">redraw</button>    
+
+</div>
+
+<div id="setlabel" class="group">
+    <div>
+        <div><label for="label_label">Label / Src</label></div>
+        <textarea id="tta_label"  rows="10"></textarea>
+    </div>
+    <div>
+        <button id="ctrl_setlabel" onclick="setLabel();">submit</button>
+    </div>
+    
+</div>
+
+<div id="setgraph" class="group">
+    <div>
+        <div><label for="label_graph">graph</label></div>
+        <textarea id="tta_graph"  rows="12"></textarea>
+    </div>
+    <div>
+        <button id="ctrl_getgraph" onclick="getGraph();">Get Graph</button>
+        <button id="ctrl_setgraph" onclick="setGraph();">Reset Graph</button>
+    </div>
+    
+</div>
+
+<!--
+<ol id="filelist">
+    <li class="ui-widget-content">Item 1</li>
+    <li class="ui-widget-content">Item 2</li>
+    <li class="ui-widget-content">Item 3</li>
+    
+</ol>
+-->
+</div>
+
+
+
+</body>
+</html>
